@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bbplttl62abt3"]
+
+[ext_resource type="PackedScene" uid="uid://bgb34iwajlgui" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://b1scj2iaoy8ce" path="res://pause_node.gd" id="3_feb5d"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7dm0k"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ig7tw"]
+size = Vector2(20, 20)
+
+[node name="game" type="Node" unique_id=280679977]
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=407645860]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1300156854]
+shape = SubResource("WorldBoundaryShape3D_7dm0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1145822956]
+mesh = SubResource("PlaneMesh_ig7tw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1844161168]
+transform = Transform3D(1, 0, 0, 0, 0.0049566585, 0.9999877, 0, -0.9999877, 0.0049566585, 0, 6.007435, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=617305847 instance=ExtResource("1_80nbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=1229695107]
+transform = Transform3D(1.0950989, 0, 0, 0, 2.1663008, 0, 0, 0, 1.0950989, 0, 25, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1621686568]
+transform = Transform3D(0.86590886, 0, 0, 0, 0.4420836, 0.74455374, 0, -0.74455374, 0.4420836, 0, 0, 20)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1385890045]
+process_mode = 3
+script = ExtResource("3_feb5d")
+
+[node name="PauseBloor" type="ColorRect" parent="CanvasLayer" unique_id=521968083]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.05882353)
+
+[node name="PauseCnt" type="VBoxContainer" parent="CanvasLayer" unique_id=843075827]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseCnt" unique_id=1205692755]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Go to menu?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseCnt" unique_id=2055256532]
+process_mode = 3
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ToMain" type="Button" parent="CanvasLayer/PauseCnt/HBoxContainer" unique_id=897794180]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Yes"
+
+[node name="CancelMain" type="Button" parent="CanvasLayer/PauseCnt/HBoxContainer" unique_id=968382063]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "No"
+
+[connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="." method="_on_to_main_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="." method="_on_cancel_main_pressed"]
