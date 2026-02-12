@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bgb34iwajlgui" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://b1scj2iaoy8ce" path="res://pause_node.gd" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://bkvmydfn5saxg" path="res://addons/virtual_joystick/textures/joystick_tip.png" id="4_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://dpepuf8fom427" path="res://menu_icon.svg" id="5_7jktm"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7dm0k"]
 
@@ -81,14 +83,25 @@ theme_override_font_sizes/font_size = 50
 text = "No"
 
 [node name="Virtual Joystick" parent="CanvasLayer" unique_id=904890145 instance=ExtResource("3_fc0e3")]
-visible = false
 pressed_color = Color(0, 1, 0, 1)
+visibility_mode = 1
 action_left = "move_left"
 action_right = "move_right"
 action_up = "move_forward"
 action_down = "move_back"
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=1328326420]
+[node name="JumpButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=1328326420]
+position = Vector2(950, 400)
+texture_normal = ExtResource("4_fc0e3")
+action = "jump"
+visibility_mode = 1
 
-[connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="." method="_on_to_main_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="." method="_on_cancel_main_pressed"]
+[node name="MenuButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=462590265]
+position = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("5_7jktm")
+action = "pause"
+visibility_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="CanvasLayer" method="_on_to_main_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="CanvasLayer" method="_on_cancel_main_pressed"]
