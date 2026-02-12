@@ -1,4 +1,9 @@
 extends CanvasLayer
+
+func _ready() -> void:
+	if OS.get_name() == "Android" || OS.get_name() == "iOS":
+		$"Virtual Joystick".visible = true
+
 var isPaused = false
 
 func switchPause():

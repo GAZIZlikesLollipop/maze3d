@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbplttl62abt3"]
 
 [ext_resource type="PackedScene" uid="uid://bgb34iwajlgui" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://b1scj2iaoy8ce" path="res://pause_node.gd" id="3_feb5d"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7dm0k"]
@@ -78,6 +79,16 @@ process_mode = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "No"
+
+[node name="Virtual Joystick" parent="CanvasLayer" unique_id=904890145 instance=ExtResource("3_fc0e3")]
+visible = false
+pressed_color = Color(0, 1, 0, 1)
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_forward"
+action_down = "move_back"
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=1328326420]
 
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="." method="_on_to_main_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="." method="_on_cancel_main_pressed"]
