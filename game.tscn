@@ -14,6 +14,7 @@ size = Vector2(20, 20)
 [node name="game" type="Node" unique_id=280679977]
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=407645860]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1300156854]
 shape = SubResource("WorldBoundaryShape3D_7dm0k")
@@ -27,12 +28,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." unique_id=617305847 instance=ExtResource("1_80nbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-
-[node name="CameraPivot" type="Marker3D" parent="." unique_id=1229695107]
-transform = Transform3D(1.0950989, 0, 0, 0, 2.1663008, 0, 0, 0, 1.0950989, 0, 25, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1621686568]
-transform = Transform3D(0.86590886, 0, 0, 0, 0.4420836, 0.74455374, 0, -0.74455374, 0.4420836, 0, 0, 20)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1385890045]
 process_mode = 3
@@ -82,10 +77,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "No"
 
-[node name="Cancel" type="TouchScreenButton" parent="CanvasLayer/PauseCnt/HBoxContainer" unique_id=2129115893]
-texture_normal = ExtResource("5_7jktm")
-action = "pause"
-
 [node name="Virtual Joystick" parent="CanvasLayer" unique_id=904890145 instance=ExtResource("3_fc0e3")]
 pressed_color = Color(0, 1, 0, 1)
 visibility_mode = 1
@@ -94,7 +85,7 @@ action_right = "move_right"
 action_up = "move_forward"
 action_down = "move_back"
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=904322744]
+[node name="JumpBox" type="Control" parent="CanvasLayer" unique_id=904322744]
 layout_direction = 2
 layout_mode = 3
 anchors_preset = 11
@@ -104,8 +95,9 @@ anchor_bottom = 1.0
 offset_left = -1146.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="JumpButton" type="TouchScreenButton" parent="CanvasLayer/Control" unique_id=1088644918]
+[node name="JumpButton" type="TouchScreenButton" parent="CanvasLayer/JumpBox" unique_id=1088644918]
 position = Vector2(950, 400)
 texture_normal = ExtResource("4_fc0e3")
 action = "jump"

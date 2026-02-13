@@ -2,8 +2,16 @@ extends CharacterBody3D
 
 @export var speed = 16
 @export var gravity = 30
+@export var mouse_sensetivity = 0.002
+@onready var camera_pivot = $CameraPivot
 
 var target_velocity = Vector3.ZERO
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x*mouse_sensetivity)
+		camera_pivot.rotate_x(-event.relative.y*mouse_sensetivity)
+		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _physics_process(delta):
 	var current = Vector3.ZERO
@@ -21,7 +29,6 @@ func _physics_process(delta):
 	# Direction fix
 	if current != Vector3.ZERO:
 		current = current.normalized()
-		$Pivot.basis = Basis.looking_at(current)
 		
 	# Vertical move
 	if not is_on_floor():
