@@ -16,7 +16,7 @@ func _physics_process(delta):
 		current.x -= 1
 	if Input.is_action_pressed("move_back"):
 		current.z += 1
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("jump") && is_on_floor():
 		current.y += 1
 	# Direction fix
 	if current != Vector3.ZERO:

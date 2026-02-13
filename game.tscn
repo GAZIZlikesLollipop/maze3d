@@ -45,7 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.05882353)
+color = Color(0, 0, 0, 0.09803922)
 
 [node name="PauseCnt" type="VBoxContainer" parent="CanvasLayer" unique_id=843075827]
 process_mode = 3
@@ -82,6 +82,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "No"
 
+[node name="Cancel" type="TouchScreenButton" parent="CanvasLayer/PauseCnt/HBoxContainer" unique_id=2129115893]
+texture_normal = ExtResource("5_7jktm")
+action = "pause"
+
 [node name="Virtual Joystick" parent="CanvasLayer" unique_id=904890145 instance=ExtResource("3_fc0e3")]
 pressed_color = Color(0, 1, 0, 1)
 visibility_mode = 1
@@ -90,15 +94,27 @@ action_right = "move_right"
 action_up = "move_forward"
 action_down = "move_back"
 
-[node name="JumpButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=1328326420]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=904322744]
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1146.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="JumpButton" type="TouchScreenButton" parent="CanvasLayer/Control" unique_id=1088644918]
 position = Vector2(950, 400)
 texture_normal = ExtResource("4_fc0e3")
 action = "jump"
 visibility_mode = 1
 
-[node name="MenuButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=462590265]
-position = Vector2(3, 3)
-scale = Vector2(2.5, 2.5)
+[node name="MenuButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=791534609]
+process_mode = 3
+position = Vector2(12, 3)
+scale = Vector2(3.25, 3.25)
 texture_normal = ExtResource("5_7jktm")
 action = "pause"
 visibility_mode = 1
