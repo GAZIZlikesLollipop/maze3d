@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbplttl62abt3"]
 
 [ext_resource type="PackedScene" uid="uid://bgb34iwajlgui" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://b3mpgridictpe" path="res://brick-texture.jpg" id="1_ryrav"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://b1scj2iaoy8ce" path="res://pause_node.gd" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://bkvmydfn5saxg" path="res://addons/virtual_joystick/textures/joystick_tip.png" id="4_fc0e3"]
@@ -11,16 +12,24 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_ig7tw"]
 size = Vector2(20, 20)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eow3j"]
+albedo_texture = ExtResource("1_ryrav")
+
+[sub_resource type="Environment" id="Environment_j5wjh"]
+background_mode = 1
+background_color = Color(0.52186346, 0.676832, 1, 1)
+
 [node name="game" type="Node" unique_id=280679977]
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=407645860]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1300156854]
 shape = SubResource("WorldBoundaryShape3D_7dm0k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1145822956]
 mesh = SubResource("PlaneMesh_ig7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_eow3j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1844161168]
 transform = Transform3D(1, 0, 0, 0, 0.0049566585, 0.9999877, 0, -0.9999877, 0.0049566585, 0, 6.007435, 0)
@@ -40,7 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.09803922)
+color = Color(0, 0, 0, 0.39215687)
 
 [node name="PauseCnt" type="VBoxContainer" parent="CanvasLayer" unique_id=843075827]
 process_mode = 3
@@ -78,6 +87,10 @@ theme_override_font_sizes/font_size = 50
 text = "No"
 
 [node name="Virtual Joystick" parent="CanvasLayer" unique_id=904890145 instance=ExtResource("3_fc0e3")]
+offset_left = 50.0
+offset_top = -348.0
+offset_right = 350.0
+offset_bottom = -48.0
 pressed_color = Color(0, 1, 0, 1)
 visibility_mode = 1
 action_left = "move_left"
@@ -88,17 +101,19 @@ action_down = "move_back"
 [node name="JumpBox" type="Control" parent="CanvasLayer" unique_id=904322744]
 layout_direction = 2
 layout_mode = 3
-anchors_preset = 11
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1146.0
+offset_left = -1152.0
+offset_top = -640.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 mouse_filter = 2
 
 [node name="JumpButton" type="TouchScreenButton" parent="CanvasLayer/JumpBox" unique_id=1088644918]
-position = Vector2(950, 400)
+position = Vector2(900, 350)
 texture_normal = ExtResource("4_fc0e3")
 action = "jump"
 visibility_mode = 1
@@ -110,6 +125,9 @@ scale = Vector2(3.25, 3.25)
 texture_normal = ExtResource("5_7jktm")
 action = "pause"
 visibility_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1381768285]
+environment = SubResource("Environment_j5wjh")
 
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="CanvasLayer" method="_on_to_main_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="CanvasLayer" method="_on_cancel_main_pressed"]

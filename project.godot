@@ -15,10 +15,6 @@ run/main_scene="uid://b6s1mkm8obsgk"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg")
-
 [input]
 
 move_forward={
