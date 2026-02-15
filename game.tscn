@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://b1scj2iaoy8ce" path="res://pause_node.gd" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://bkvmydfn5saxg" path="res://addons/virtual_joystick/textures/joystick_tip.png" id="4_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://dpepuf8fom427" path="res://menu_icon.svg" id="5_7jktm"]
+[ext_resource type="Texture2D" uid="uid://brxf315m1bjvf" path="res://background.png" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://b7dyixjfew3vf" path="res://wall.tscn" id="8_j5wjh"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7dm0k"]
 
@@ -15,14 +17,29 @@ size = Vector2(20, 20)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eow3j"]
 albedo_texture = ExtResource("1_ryrav")
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j5wjh"]
+panorama = ExtResource("7_eow3j")
+
+[sub_resource type="Sky" id="Sky_vef74"]
+sky_material = SubResource("PanoramaSkyMaterial_j5wjh")
+
 [sub_resource type="Environment" id="Environment_j5wjh"]
-background_mode = 1
-background_color = Color(0.52186346, 0.676832, 1, 1)
+background_mode = 2
+background_color = Color(0.23529412, 0.6156863, 1, 1)
+sky = SubResource("Sky_vef74")
+ambient_light_source = 2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j5wjh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vef74"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hve3p"]
+albedo_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
 
 [node name="game" type="Node" unique_id=280679977]
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=407645860]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1300156854]
 shape = SubResource("WorldBoundaryShape3D_7dm0k")
@@ -49,7 +66,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.39215687)
+color = Color(0, 0, 0, 0.49019608)
 
 [node name="PauseCnt" type="VBoxContainer" parent="CanvasLayer" unique_id=843075827]
 process_mode = 3
@@ -128,6 +145,19 @@ visibility_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1381768285]
 environment = SubResource("Environment_j5wjh")
+
+[node name="wall" parent="." unique_id=1829222442 instance=ExtResource("8_j5wjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0076385, -7.6462746)
+
+[node name="spawn" type="StaticBody3D" parent="." unique_id=1937630212]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="spawn" unique_id=2144540267]
+shape = SubResource("WorldBoundaryShape3D_j5wjh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="spawn" unique_id=1912343095]
+mesh = SubResource("PlaneMesh_vef74")
+surface_material_override/0 = SubResource("StandardMaterial3D_hve3p")
 
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="CanvasLayer" method="_on_to_main_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="CanvasLayer" method="_on_cancel_main_pressed"]

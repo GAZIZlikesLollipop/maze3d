@@ -14,7 +14,9 @@ func switchPause():
 		$"Virtual Joystick".visible = !($"Virtual Joystick".visible)
 	get_tree().paused = isPaused
 	if isPaused:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -23,7 +25,7 @@ func _input(event: InputEvent) -> void:
 func _on_to_main_pressed() -> void:
 	switchPause()
 	get_tree().change_scene_to_file("res://menu.tscn")
-
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 func _on_cancel_main_pressed() -> void:
 	switchPause()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

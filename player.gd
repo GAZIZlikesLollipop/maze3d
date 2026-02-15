@@ -16,25 +16,23 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta):
 	var current = Vector3.ZERO
 	# Input check
+	camera_pivot.transform.basis
 	if Input.is_action_pressed("move_forward"):
-		current.z -= 1
+		current += -global_transform.basis.z
 	if Input.is_action_pressed("move_right"):
-		current.x += 1
+		current += global_transform.basis.x
 	if Input.is_action_pressed("move_left"):
-		current.x -= 1
+		current += -global_transform.basis.x
 	if Input.is_action_pressed("move_back"):
-		current.z += 1
-	if Input.is_action_pressed("jump") && is_on_floor():
-		current.y += 1
+		current += global_transform.basis.z
 	# Direction fix
 	if current != Vector3.ZERO:
 		current = current.normalized()
 		
 	# Vertical move
+	current.y = 0
 	if not is_on_floor():
 		target_velocity.y = target_velocity.y - (gravity * delta)
-	else: 
-		target_velocity.y = current.y * speed
 	# Ground move
 	target_velocity.x = current.x * speed
 	target_velocity.z = current.z * speed
