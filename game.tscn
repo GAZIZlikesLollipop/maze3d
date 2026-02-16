@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://b3mpgridictpe" path="res://brick-texture.jpg" id="1_ryrav"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://b1scj2iaoy8ce" path="res://pause_node.gd" id="3_feb5d"]
-[ext_resource type="Texture2D" uid="uid://bkvmydfn5saxg" path="res://addons/virtual_joystick/textures/joystick_tip.png" id="4_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://dpepuf8fom427" path="res://menu_icon.svg" id="5_7jktm"]
 [ext_resource type="Texture2D" uid="uid://brxf315m1bjvf" path="res://background.png" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://bw28ukrl021m6" path="res://fence.tscn" id="7_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://b7dyixjfew3vf" path="res://wall.tscn" id="8_j5wjh"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7dm0k"]
@@ -115,26 +115,6 @@ action_right = "move_right"
 action_up = "move_forward"
 action_down = "move_back"
 
-[node name="JumpBox" type="Control" parent="CanvasLayer" unique_id=904322744]
-layout_direction = 2
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1152.0
-offset_top = -640.0
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="JumpButton" type="TouchScreenButton" parent="CanvasLayer/JumpBox" unique_id=1088644918]
-position = Vector2(900, 350)
-texture_normal = ExtResource("4_fc0e3")
-action = "jump"
-visibility_mode = 1
-
 [node name="MenuButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=791534609]
 process_mode = 3
 position = Vector2(12, 3)
@@ -146,11 +126,8 @@ visibility_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1381768285]
 environment = SubResource("Environment_j5wjh")
 
-[node name="wall" parent="." unique_id=1829222442 instance=ExtResource("8_j5wjh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0076385, -7.6462746)
-
 [node name="spawn" type="StaticBody3D" parent="." unique_id=1937630212]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.1, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.01, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="spawn" unique_id=2144540267]
 shape = SubResource("WorldBoundaryShape3D_j5wjh")
@@ -158,6 +135,11 @@ shape = SubResource("WorldBoundaryShape3D_j5wjh")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="spawn" unique_id=1912343095]
 mesh = SubResource("PlaneMesh_vef74")
 surface_material_override/0 = SubResource("StandardMaterial3D_hve3p")
+
+[node name="fence" parent="." unique_id=682845567 instance=ExtResource("7_j5wjh")]
+
+[node name="wall" parent="." unique_id=245520897 instance=ExtResource("8_j5wjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6)
 
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="CanvasLayer" method="_on_to_main_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="CanvasLayer" method="_on_cancel_main_pressed"]

@@ -10,7 +10,6 @@ func switchPause():
 	$PauseBloor.visible = !($PauseBloor.visible)
 	$PauseCnt.visible = !($PauseCnt.visible)
 	if OS.get_name() == "Android" || OS.get_name() == "iOS":
-		$JumpBox.visible = !($JumpBox.visible)
 		$"Virtual Joystick".visible = !($"Virtual Joystick".visible)
 	get_tree().paused = isPaused
 	if isPaused:
