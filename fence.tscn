@@ -2,16 +2,37 @@
 
 [ext_resource type="PackedScene" uid="uid://b7dyixjfew3vf" path="res://wall.tscn" id="1_hsy3x"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hsy3x"]
+size = Vector3(1.25, 2.5, 3.35)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5gl7b"]
+size = Vector3(1, 2.5, 3.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vm2af"]
+shading_mode = 0
+
 [node name="fence" type="Node3D" unique_id=682845567]
 
 [node name="wall" parent="." unique_id=245520897 instance=ExtResource("1_hsy3x")]
 transform = Transform3D(-4.502273e-07, 0, 1, 0, 1.2, 0, -10.3, 0, -4.371139e-08, 45, 3, 0)
 
 [node name="wall4" parent="." unique_id=626017511 instance=ExtResource("1_hsy3x")]
-transform = Transform3D(-4.502273e-07, 0, 1, 0, 1.2, 0, -10.3, 0, -4.371139e-08, -45, 3, 0)
+transform = Transform3D(-3.496911e-07, 0, 1, 0, 1.2, 0, -8, 0, -4.371139e-08, -45, 3, -5.8)
 
 [node name="wall2" parent="." unique_id=1137886744 instance=ExtResource("1_hsy3x")]
 transform = Transform3D(10.3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 3, 45)
 
 [node name="wall3" parent="." unique_id=1984421770 instance=ExtResource("1_hsy3x")]
 transform = Transform3D(10.3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 3, -45)
+
+[node name="Exit" type="StaticBody3D" parent="." unique_id=377934968]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -46, 2.842, 40.8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit" unique_id=688272581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_hsy3x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Exit" unique_id=1327950828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_5gl7b")
+surface_material_override/0 = SubResource("StandardMaterial3D_vm2af")

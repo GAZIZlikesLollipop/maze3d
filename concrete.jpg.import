@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3mpgridictpe"
-path.s3tc="res://.godot/imported/brick-texture.jpg-b3b30f7d1538fd475440807f7b7448a5.s3tc.ctex"
-path.etc2="res://.godot/imported/brick-texture.jpg-b3b30f7d1538fd475440807f7b7448a5.etc2.ctex"
+uid="uid://71pxj2iwohk1"
+path.s3tc="res://.godot/imported/concrete.jpg-c96f27a5148e8221e598238eda015313.s3tc.ctex"
+path.etc2="res://.godot/imported/concrete.jpg-c96f27a5148e8221e598238eda015313.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://brick-texture.jpg"
-dest_files=["res://.godot/imported/brick-texture.jpg-b3b30f7d1538fd475440807f7b7448a5.s3tc.ctex", "res://.godot/imported/brick-texture.jpg-b3b30f7d1538fd475440807f7b7448a5.etc2.ctex"]
+source_file="res://concrete.jpg"
+dest_files=["res://.godot/imported/concrete.jpg-c96f27a5148e8221e598238eda015313.s3tc.ctex", "res://.godot/imported/concrete.jpg-c96f27a5148e8221e598238eda015313.etc2.ctex"]
 
 [params]
 

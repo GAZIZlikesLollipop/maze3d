@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bbplttl62abt3"]
 
 [ext_resource type="PackedScene" uid="uid://bgb34iwajlgui" path="res://player.tscn" id="1_80nbo"]
-[ext_resource type="Texture2D" uid="uid://b3mpgridictpe" path="res://brick-texture.jpg" id="1_ryrav"]
+[ext_resource type="Texture2D" uid="uid://71pxj2iwohk1" path="res://concrete.jpg" id="1_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://b1scj2iaoy8ce" path="res://pause_node.gd" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://dpepuf8fom427" path="res://menu_icon.svg" id="5_7jktm"]
@@ -15,7 +15,8 @@
 size = Vector2(20, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eow3j"]
-albedo_texture = ExtResource("1_ryrav")
+albedo_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+albedo_texture = ExtResource("1_j5wjh")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j5wjh"]
 panorama = ExtResource("7_eow3j")
@@ -29,13 +30,6 @@ background_color = Color(0.23529412, 0.6156863, 1, 1)
 sky = SubResource("Sky_vef74")
 ambient_light_source = 2
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j5wjh"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_vef74"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hve3p"]
-albedo_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
-
 [node name="game" type="Node" unique_id=280679977]
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=407645860]
@@ -45,15 +39,16 @@ transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_7dm0k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1145822956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0072468654, 0.0037430658, -0.011327532)
 mesh = SubResource("PlaneMesh_ig7tw")
 surface_material_override/0 = SubResource("StandardMaterial3D_eow3j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1844161168]
-transform = Transform3D(1, 0, 0, 0, 0.0049566585, 0.9999877, 0, -0.9999877, 0.0049566585, 0, 6.007435, 0)
+transform = Transform3D(1, 0, 0, 0, 0.0049566585, 0.9999877, 0, -0.9999877, 0.0049566585, 0, 10.926133, 0)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=617305847 instance=ExtResource("1_80nbo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.783856, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1385890045]
 process_mode = 3
@@ -126,20 +121,19 @@ visibility_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1381768285]
 environment = SubResource("Environment_j5wjh")
 
-[node name="spawn" type="StaticBody3D" parent="." unique_id=1937630212]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.01, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="spawn" unique_id=2144540267]
-shape = SubResource("WorldBoundaryShape3D_j5wjh")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="spawn" unique_id=1912343095]
-mesh = SubResource("PlaneMesh_vef74")
-surface_material_override/0 = SubResource("StandardMaterial3D_hve3p")
-
 [node name="fence" parent="." unique_id=682845567 instance=ExtResource("7_j5wjh")]
 
 [node name="wall" parent="." unique_id=245520897 instance=ExtResource("8_j5wjh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5.5)
+
+[node name="wall2" parent="." unique_id=213041649 instance=ExtResource("8_j5wjh")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.5, 3, 0)
+
+[node name="wall3" parent="." unique_id=2118822535 instance=ExtResource("8_j5wjh")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.5, 3, 0)
+
+[node name="wall4" parent="." unique_id=945069179 instance=ExtResource("8_j5wjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3, -5.5)
 
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="CanvasLayer" method="_on_to_main_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="CanvasLayer" method="_on_cancel_main_pressed"]

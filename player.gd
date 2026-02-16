@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 16
+@export var speed = 12
 @export var gravity = 30
 @export var mouse_sensetivity = 0.002
 @onready var camera_pivot = $CameraPivot
