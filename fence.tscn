@@ -17,7 +17,7 @@ shading_mode = 0
 transform = Transform3D(-4.502273e-07, 0, 1, 0, 1.2, 0, -10.3, 0, -4.371139e-08, 45, 3, 0)
 
 [node name="wall4" parent="." unique_id=626017511 instance=ExtResource("1_hsy3x")]
-transform = Transform3D(-3.496911e-07, 0, 1, 0, 1.2, 0, -8, 0, -4.371139e-08, -45, 3, -5.8)
+transform = Transform3D(-3.496911e-07, 0, 1, 0, 1.2, 0, -8, 0, -4.371139e-08, -45, 3, -5.7)
 
 [node name="wall2" parent="." unique_id=1137886744 instance=ExtResource("1_hsy3x")]
 transform = Transform3D(10.3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 3, 45)
@@ -26,13 +26,13 @@ transform = Transform3D(10.3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 3, 45)
 transform = Transform3D(10.3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 3, -45)
 
 [node name="Exit" type="StaticBody3D" parent="." unique_id=377934968]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -46, 2.842, 40.8)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -45.899, 2.85, 41.1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit" unique_id=688272581]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 shape = SubResource("BoxShape3D_hsy3x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Exit" unique_id=1327950828]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.59)
 mesh = SubResource("BoxMesh_5gl7b")
 surface_material_override/0 = SubResource("StandardMaterial3D_vm2af")
