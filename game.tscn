@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bgb34iwajlgui" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://71pxj2iwohk1" path="res://concrete.jpg" id="1_j5wjh"]
+[ext_resource type="Script" uid="uid://byvk2dnrw1ics" path="res://game.gd" id="1_vef74"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://b1scj2iaoy8ce" path="res://pause_node.gd" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://dpepuf8fom427" path="res://menu_icon.svg" id="5_7jktm"]
@@ -30,7 +31,10 @@ background_color = Color(0.23529412, 0.6156863, 1, 1)
 sky = SubResource("Sky_vef74")
 ambient_light_source = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_j5wjh"]
+
 [node name="game" type="Node" unique_id=280679977]
+script = ExtResource("1_vef74")
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=407645860]
 transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, 0, 0)
@@ -44,7 +48,7 @@ mesh = SubResource("PlaneMesh_ig7tw")
 surface_material_override/0 = SubResource("StandardMaterial3D_eow3j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1844161168]
-transform = Transform3D(1, 0, 0, 0, 0.0049566585, 0.9999877, 0, -0.9999877, 0.0049566585, 0, 10.926133, 0)
+transform = Transform3D(1, 0, 0, 0, 0.0049566585, 0.9999877, 0, -0.9999877, 0.0049566585, 0, 14.926133, 0)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=617305847 instance=ExtResource("1_80nbo")]
@@ -54,7 +58,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.783856, 0)
 process_mode = 3
 script = ExtResource("3_feb5d")
 
-[node name="PauseBloor" type="ColorRect" parent="CanvasLayer" unique_id=521968083]
+[node name="Bloor" type="ColorRect" parent="CanvasLayer" unique_id=521968083]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,6 +121,40 @@ scale = Vector2(3.25, 3.25)
 texture_normal = ExtResource("5_7jktm")
 action = "pause"
 visibility_mode = 1
+
+[node name="EndCnt" type="VBoxContainer" parent="CanvasLayer" unique_id=1317152824]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/EndCnt" unique_id=1326215466]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "You won! Try again?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndCnt" unique_id=1323189344]
+process_mode = 3
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Again" type="Button" parent="CanvasLayer/EndCnt/HBoxContainer" unique_id=1573647288]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Yes"
+
+[node name="Exit" type="Button" parent="CanvasLayer/EndCnt/HBoxContainer" unique_id=404692679]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Menu"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1381768285]
 environment = SubResource("Environment_j5wjh")
@@ -279,5 +317,18 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27.
 [node name="wall52" parent="." unique_id=1726241729 instance=ExtResource("8_j5wjh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27.5, 3, -40.04877)
 
+[node name="ExitZone" type="Area3D" parent="." unique_id=738865411]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -49, 2, 39.3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitZone" unique_id=2077217761]
+shape = SubResource("BoxShape3D_j5wjh")
+debug_color = Color(0.9560383, 0, 0.54004955, 0.42)
+
+[node name="wall53" parent="." unique_id=631736471 instance=ExtResource("8_j5wjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 3, 27.5)
+
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/ToMain" to="CanvasLayer" method="_on_to_main_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseCnt/HBoxContainer/CancelMain" to="CanvasLayer" method="_on_cancel_main_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndCnt/HBoxContainer/Again" to="." method="_on_again_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndCnt/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="body_entered" from="ExitZone" to="." method="_on_exit_zone_body_entered"]

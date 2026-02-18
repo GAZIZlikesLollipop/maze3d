@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func switchPause():
 	isPaused = !isPaused
-	$PauseBloor.visible = !($PauseBloor.visible)
+	$Bloor.visible = !($Bloor.visible)
 	$PauseCnt.visible = !($PauseCnt.visible)
 	if OS.get_name() == "Android" || OS.get_name() == "iOS":
 		$"Virtual Joystick".visible = !($"Virtual Joystick".visible)
