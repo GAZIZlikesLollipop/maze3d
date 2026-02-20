@@ -4,11 +4,16 @@ var isPaused = false
 
 func switchExit():
 	isPaused = !isPaused
-	$"CanvasLayer/Virtual Joystick".visible = !($"CanvasLayer/Virtual Joystick".visible)
+	if OS.get_name() == "Android" || OS.get_name() == "iOS":
+		$"CanvasLayer/Virtual Joystick".visible = !($"CanvasLayer/Virtual Joystick".visible)
 	$CanvasLayer/Bloor.visible = !($CanvasLayer/Bloor.visible)
 	$CanvasLayer/EndCnt.visible = !($CanvasLayer/EndCnt.visible)
 	$CanvasLayer/MenuButton.visible = !($CanvasLayer/MenuButton.visible)
 	get_tree().paused = isPaused
+	if isPaused:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else: 
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func _on_exit_zone_body_entered(body: Node3D) -> void:
 	if body == $Player:
